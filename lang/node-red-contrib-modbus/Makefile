@@ -6,13 +6,13 @@ include $(TOPDIR)/rules.mk
 
 PKG_NPM_NAME:=node-red-contrib-modbus
 PKG_NAME:=$(PKG_NPM_NAME)
-PKG_VERSION:=5.40.0
+PKG_VERSION:=5.43.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NPM_NAME)-$(PKG_VERSION).tgz
 PKG_SOURCE_URL:=https://mirrors.tencent.com/npm/$(PKG_NPM_NAME)/-/ \
                 https://registry.npmjs.org/$(PKG_NPM_NAME)/-/
-PKG_HASH:=7b585749755dabafea9492621537a4191b8d5a6b158f9ec299162ce5ef97151a
+PKG_HASH:=7b7ac6ed8e57fc7cb4faf8f984c92f05d8e8ece4a1e18ef4ed000c5a7c551f4b
 
 PKG_MAINTAINER:=Hirokazu MORIKAWA <morikw2@gmail.com>
 PKG_LICENSE:=BSD-3-Clause
@@ -57,7 +57,7 @@ define Build/Compile
 	rm -rf $(TMP_DIR)/npm-cache-$(TMPNPM)
 	rm -f $(PKG_BUILD_DIR)/node_modules/.package-lock.json
 	find $(PKG_BUILD_DIR)/node_modules -type d -empty -print0 | xargs -0 -r rmdir || true
-	rm -rf $(PKG_BUILD_DIR)/node_modules/@open-p4nr/modbus-serial/node_modules/@serialport/bindings-cpp/prebuilds
+	rm -rf $(PKG_BUILD_DIR)/node_modules/@openp4nr/modbus-serial/node_modules/@serialport/bindings-cpp/prebuilds
 endef
 
 define Package/node-red-contrib-modbus/install

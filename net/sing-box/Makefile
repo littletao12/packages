@@ -5,12 +5,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=sing-box
-PKG_VERSION:=1.9.3
+PKG_VERSION:=1.11.3
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/SagerNet/sing-box/tar.gz/v$(PKG_VERSION)?
-PKG_HASH:=ab3d321860f973151e773c0c4a1478ab31ed63d89e17c7ac618cf50b232dd1c4
+PKG_HASH:=51b189549395c132dce781e1c70315e4bb8386c207e171c07124759b45481d97
 
 PKG_LICENSE:=GPL-3.0-or-later
 PKG_LICENSE_FILES:=LICENSE
@@ -64,6 +64,7 @@ define Package/sing-box/config
   if PACKAGE_sing-box
     config SING_BOX_BUILD_ACME
     bool "Build with ACME TLS certificate issuer support"
+    default y
 
     config SING_BOX_BUILD_CLASH_API
     bool "Build with Clash API support"
@@ -98,6 +99,7 @@ define Package/sing-box/config
 
     config SING_BOX_BUILD_REALITY_SERVER
     bool "Build with REALITY TLS server support"
+    default y
 
     config SING_BOX_BUILD_UTLS
     bool "Build with uTLS support"

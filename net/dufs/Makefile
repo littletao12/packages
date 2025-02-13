@@ -5,12 +5,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=dufs
-PKG_VERSION:=0.40.0
-PKG_RELEASE:=3
+PKG_VERSION:=0.43.0
+PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/sigoden/dufs/tar.gz/v$(PKG_VERSION)?
-PKG_HASH:=da4b64add0df9fca1e38e416a8c265b57dc66e02d6256d1b34db12f9b5d7a962
+PKG_HASH:=4ba3b90486336efc4e592bcf15f14d4e3b6ac7b3b1bf8770815b8c43975d8b01
 
 PKG_MAINTAINER:=Tianling Shen <cnsztl@immortalwrt.org>
 PKG_LICENSE:=Apache-2.0 MIT
@@ -34,6 +34,10 @@ endef
 define Package/dufs/description
   Dufs is a distinctive utility file server that supports static
   serving, uploading, searching, accessing control, webdav...
+endef
+
+define Package/dufs/conffiles
+/etc/config/dufs
 endef
 
 define Package/dufs/install

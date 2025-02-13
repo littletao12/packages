@@ -5,12 +5,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=rustdesk-server
-PKG_VERSION:=1.1.10-3
-PKG_RELEASE:=1
+PKG_VERSION:=1.1.14
+PKG_RELEASE:=2
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://codeload.github.com/rustdesk/rustdesk-server/tar.gz/$(PKG_VERSION)?
-PKG_HASH:=ca7203984a798f82651486657ada0968a562f29094ce2c39226ec43278f26b9b
+PKG_SOURCE_PROTO:=git
+PKG_SOURCE_URL:=https://github.com/rustdesk/rustdesk-server.git
+PKG_SOURCE_VERSION:=$(PKG_VERSION)
+PKG_MIRROR_HASH:=e300079a0b442ef4eb4d129338d0d7b1dd1d3505720e20735dac5f6ea65ee93a
 
 PKG_MAINTAINER:=Tianling Shen <cnsztl@immortalwrt.org>
 PKG_LICENSE:=AGPL-3.0-only
@@ -26,12 +27,27 @@ define Package/rustdesk-server
   SECTION:=net
   CATEGORY:=Network
   TITLE:=RustDesk Server Program
-  DEPENDS:=@(aarch64||arm||i386||i686||x86_64)
+  DEPENDS:=@(aarch64||arm||x86_64) @(!arm||TARGET_bcm53xx||HAS_FPU)
   URL:=https://rustdesk.com/server
+  USERID:=rustdesk-server:rustdesk-server
 endef
 
 define Package/rustdesk-server/description
   Self-host your own RustDesk server, it is free and open source.
+endef
+
+define Package/rustdesk-server/conffiles
+/etc/config/rustdesk-server
+/etc/rustdesk-server
+endef
+
+define Package/rustdesk-server/install
+	$(INSTALL_DIR) $(1)/usr/bin/
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/bin/{hbbr,hbbs} $(1)/usr/bin/
+	$(INSTALL_DIR) $(1)/etc/config
+	$(INSTALL_CONF) ./files/rustdesk-server.conf $(1)/etc/config/rustdesk-server
+	$(INSTALL_DIR) $(1)/etc/init.d
+	$(INSTALL_BIN) ./files/rustdesk-server.init $(1)/etc/init.d/rustdesk-server
 endef
 
 $(eval $(call RustBinPackage,rustdesk-server))

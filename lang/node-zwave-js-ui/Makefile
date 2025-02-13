@@ -6,13 +6,13 @@ include $(TOPDIR)/rules.mk
 
 PKG_NPM_NAME:=zwave-js-ui
 PKG_NAME:=node-$(PKG_NPM_NAME)
-PKG_VERSION:=9.14.4
+PKG_VERSION:=9.29.1
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NPM_NAME)-$(PKG_VERSION).tgz
 PKG_SOURCE_URL:=https://mirrors.tencent.com/npm/$(PKG_NPM_NAME)/-/ \
                 https://registry.npmjs.org/$(PKG_NPM_NAME)/-/
-PKG_HASH:=fa37d81613e7c70bc5186b43a4b94b012abf60c171d4c9735efe500f15fdcb71
+PKG_HASH:=e029ccdcb848ef3a6d59b399114c0656f92dc1fa8b8a582ab23adbb82c7847ce
 
 PKG_MAINTAINER:=David Woodhouse <dwmw2@infradead.org>
 PKG_LICENSE:=MIT
@@ -69,9 +69,9 @@ define Build/Compile
 	rm -rf $(PKG_BUILD_DIR)/node_modules/@zwave-js/winston-daily-rotate-file/node_modules/moment/min
 	rm -rf $(PKG_BUILD_DIR)/node_modules/@zwave-js/winston-daily-rotate-file/node_modules/moment/src
 	rm -rf $(PKG_BUILD_DIR)/node_modules/@zwave-js/winston-daily-rotate-file/node_modules/moment/locale
-	rm -rf $(PKG_BUILD_DIR)/node_modules/zwave-js/node_modules/@zwave-js/core/build/test/*.ts
-	rm -rf $(PKG_BUILD_DIR)/node_modules/zwave-js/node_modules/@zwave-js/core/build/test/*.map
-	clean-modules -y -D $(PKG_BUILD_DIR)/node_modules "!**/*.png" "!**/@zwave-js/core/build/test/" \
+	rm -rf $(PKG_BUILD_DIR)/node_modules/@zwave-js/core/build/cjs/test/*.ts
+	rm -rf $(PKG_BUILD_DIR)/node_modules/@zwave-js/core/build/cjs/test/*.map
+	clean-modules -y -D $(PKG_BUILD_DIR)/node_modules "!**/*.png" "!**/@zwave-js/core/build/cjs/test/" \
 		"**/*.d.ts" "**/@types/**" "**/obj.target/" "**/config.gypi" \
 		"**/.nvmrc" "**/.devcontainer/" "**/.bowerrc" "**/.airtap.yml" "**/.test/" \
 		"**/.notags" "**/.releaserc" "**/.dprint.jsonc" "**/.eslintrc" "**/locales/" \
